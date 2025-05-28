@@ -41,7 +41,8 @@ export default function RegisterScreen({ navigation }) {
     try {
       // salva o objeto user localmente e transforma em formato JSON
       await AsyncStorage.setItem('user', JSON.stringify(user));
-    } catch (error) {
+    } 
+    catch (error) {
       // tratamento de erros
       Alert.alert('Error', 'Failed to save user data.');
     }

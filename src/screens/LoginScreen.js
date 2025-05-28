@@ -29,7 +29,7 @@ export default function LoginScreen ({ navigation }) {
       const user = JSON.parse(userData);
 
       // verifica se os parametros passados na função (referentes aos estados do useState) são iguais aos dados que foram passados no cadastro
-      if (email === user.email && password === user.password){
+      if (email == user.email && password == user.password){
         Alert.alert('Success');
         // navega para a tela Home
         navigation.navigate('Home')
