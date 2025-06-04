@@ -15,14 +15,14 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState("");
 
   // função para validar se todos os campos estão preenchidos
-  function isFormValid() {
+  function formValidation() {
     return name.trim() && email.trim() && telephone.trim() && password.trim();
   }
 
   // função para submeter os dados do cadastro
   function submitRegistration() {
     // verificação se todos os campos estão preenchidos
-    if (!isFormValid()) {
+    if (!formValidation()) {
       Alert.alert('Error', 'Please fill in all fields.');
       return;
     }
@@ -30,7 +30,7 @@ export default function RegisterScreen({ navigation }) {
     // utiliza a função de registrar usuário para armazenar esses dados
     registerUser(name, email, telephone, password).then(() => {
       Alert.alert('Success');
-      navigation.navigate("Login");
+      navigation.replace("Login");
     });
   }
 
@@ -60,7 +60,7 @@ export default function RegisterScreen({ navigation }) {
         <View style={styles.formContainer}>
           <Text style={styles.title}>Register an account</Text>
 
-          {/* Inputs para fornecer os dados do cadastro, passando as funções set do useState */}
+          {/* inputs para fornecer os dados do cadastro, passando as funções set do useState */}
           <TextInput
             style={styles.input}
             onChangeText={setName}
@@ -88,13 +88,18 @@ export default function RegisterScreen({ navigation }) {
             placeholder="Password"
           />
 
-          {/* Botão que quando clicado executa a função de submeter o cadastro */}
+          {/* botão que quando clicado executa a função de submeter o cadastro */}
           <TouchableOpacity
             style={styles.button}
             onPress={submitRegistration}
           >
             <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity style={styles.buttonGoBack} title="Go Back" onPress={() => navigation.replace('Welcome')}> 
+            <Text style={styles.buttonTextGoBack}>Go Back</Text>
+          </TouchableOpacity>
+
         </View>
       </View>
     </ImageBackground>
@@ -116,6 +121,12 @@ const styles = StyleSheet.create({
     width: "100%",
     heigth: "100%",
   },
+  buttonGoBack: {
+    padding: 15,
+    borderRadius: 15,
+    marginTop: 10,
+    width: 220,
+  },
   button: {
     backgroundColor: "#424242",
     padding: 15,
@@ -126,6 +137,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  buttonTextGoBack: {
+    color: "white",
+    fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -144,7 +161,7 @@ const styles = StyleSheet.create({
   formContainer: {
     margin: 10,
     width: windowWidth * 0.8,
-    height: 510,
+    height: 555,
     borderRadius: 20,
     alignItems: "center",
     backgroundColor: "#84848494",

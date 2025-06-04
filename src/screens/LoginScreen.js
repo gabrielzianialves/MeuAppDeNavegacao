@@ -32,7 +32,7 @@ export default function LoginScreen ({ navigation }) {
       if (email == user.email && password == user.password){
         Alert.alert('Success');
         // navega para a tela Home
-        navigation.navigate('Home')
+        navigation.replace('Home')
       } 
       else {
         Alert.alert('Error', 'Invalid email or password.');
@@ -75,6 +75,10 @@ export default function LoginScreen ({ navigation }) {
             <TouchableOpacity style={styles.button} onPress={() => login(email, password)}> 
               <Text style={styles.buttonText}>Log In</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonGoBack} title="Go Back" onPress={() => navigation.replace('Welcome')}> 
+              <Text style={styles.buttonTextGoBack}>Go Back</Text>
+            </TouchableOpacity>
     
           </View>
       </View>
@@ -105,11 +109,23 @@ const styles = StyleSheet.create({
       marginTop: 40,
       width: 220
     },
+    buttonGoBack: {
+      padding: 15,
+      borderRadius: 15,
+      marginTop: 10,
+      width: 220,
+    },
     buttonText: {
       color: 'white',
       fontSize: 18,
       fontWeight: 'bold',
       textAlign: 'center',
+    },
+    buttonTextGoBack: {
+      color: "white",
+      fontSize: 16,
+      fontWeight: "bold",
+      textAlign: "center",
     },
     container: {
       flex: 1,
@@ -133,7 +149,7 @@ const styles = StyleSheet.create({
     formContainer: { 
       margin: 10,
       width: windowWidth * 0.8, 
-      height: 430,
+      height: 450,
       borderRadius: 20,
       alignItems: 'center',
       backgroundColor: '#84848494',

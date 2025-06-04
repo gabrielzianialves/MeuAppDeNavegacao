@@ -10,18 +10,18 @@ export default function HomeScreen({ navigation }) {
     
         <Text style={styles.title}>Home Screen</Text>
 
-        {/* Botões de navegação entre as telas */}
-        <TouchableOpacity style={styles.button} title="Go to Details" onPress={() => navigation.navigate('Details')}> 
-          <Text style={styles.buttonText}>Go to Details</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} title="Go to Profile" onPress={() => navigation.navigate('Profile')}> 
-          <Text style={styles.buttonText}>Go to Profile</Text>
-        </TouchableOpacity>
-        
-        {/* Botão de Logout para o usuário desconectar da conta */}
-        <TouchableOpacity style={styles.button} title="Log Out" onPress={() => navigation.navigate('Welcome')}> 
-          <Text style={styles.buttonText}>Log Out</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonsContainer}>
+          {/* botões de navegação entre as telas */}
+          <TouchableOpacity style={styles.button} title="Go to Details" onPress={() => navigation.replace('Details')}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.profileButton} title="Go to Profile" onPress={() => navigation.replace('Profile')}> 
+          </TouchableOpacity>
+          
+          {/* botão de logout para o usuário desconectar da conta */}
+          <TouchableOpacity style={styles.button} title="Log Out" onPress={() => navigation.replace('Welcome')}> 
+          </TouchableOpacity>
+        </View>
+
 
       </View>
     </View>
@@ -32,10 +32,19 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     button: {
       backgroundColor: '#424242',
-      padding: 15,
-      borderRadius: 15,
+      borderRadius: 80,
       marginTop: 20,
-      width: 220
+      margin: 10,
+      width: 40,
+      height: 40,
+    },
+    profileButton: {
+      backgroundColor: '#424242',
+      borderRadius: 80,
+      marginTop: 20,
+      margin: 10,
+      width: 50,
+      height: 50,
     },
     buttonText: {
       color: 'white',
@@ -48,20 +57,32 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    buttonsContainer: {
+      display: 'flex',
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingBottom: 8,
+      alignItems: 'center',
+      flexDirection: 'row',
+      marginTop: 500,
+      borderRadius: 40,
+      backgroundColor: '#84848450'
+
+    },
     title: {
-      fontSize: 25,
+      fontSize: 35,
       marginTop: 40,
       marginBottom: 20,
+      marginRight: 100,
       fontWeight: 'bold',
-      color: 'white',
+      color: '424242',
     },
     formContainer: { 
       margin: 10,
-      width: windowWidth * 0.8, 
-      height: 370,
+      width: windowWidth * 1, 
+      height: 700,
       borderRadius: 20,
       alignItems: 'center',
-      backgroundColor: '#848484',
     },
   });
   

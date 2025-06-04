@@ -11,14 +11,11 @@ export default function DetailsScreen({ navigation }) {
         <Text style={styles.title}>Details Screen</Text>
 
         {/* Botões de navegação entre as telas */}
-        <TouchableOpacity style={styles.button} title="Go to Home" onPress={() => navigation.navigate('Home')}> 
+        <TouchableOpacity style={styles.button} title="Go to Home" onPress={() => navigation.replace('Home')}> 
           <Text style={styles.buttonText}>Go to Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} title="Go to Profile" onPress={() => navigation.navigate('Profile')}> 
+        <TouchableOpacity style={styles.button} title="Go to Profile" onPress={() => navigation.replace('Profile')}> 
           <Text style={styles.buttonText}>Go to Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} title="Go Back" onPress={() => navigation.goBack()}> 
-          <Text style={styles.buttonText}>Go Back</Text>
         </TouchableOpacity>
     
       </View>

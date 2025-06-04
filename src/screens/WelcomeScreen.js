@@ -19,10 +19,10 @@ export default function WelcomeScreen ({ navigation }) {
           <Text style={styles.subtitle}>Stronger Every Day. Start Your Transformation Now.</Text>
 
             {/* Botões de Cadastro e Login que levam para suas respectivas telas */}
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}> 
+            <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Register')}> 
                 <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}> 
+            <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Login')}> 
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
 

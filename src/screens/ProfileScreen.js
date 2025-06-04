@@ -10,15 +10,12 @@ export default function ProfileScreen({ navigation }) {
         
         <Text style={styles.title}>Profile Screen</Text>
 
-        {/* Botões de navegação entre as telas */}
-        <TouchableOpacity style={styles.button} title="Go to Home" onPress={() => navigation.navigate('Home')}> 
+        {/* botões de navegação entre as telas */}
+        <TouchableOpacity style={styles.button} title="Go to Home" onPress={() => navigation.replace('Home')}> 
           <Text style={styles.buttonText}>Go to Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} title="Go to Details" onPress={() => navigation.navigate('Details')}> 
+        <TouchableOpacity style={styles.button} title="Go to Details" onPress={() => navigation.replace('Details')}> 
           <Text style={styles.buttonText}>Go to Details</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} title="Go Back" onPress={() => navigation.goBack()}> 
-          <Text style={styles.buttonText}>Go Back</Text>
         </TouchableOpacity>
     
       </View>
