@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -9,16 +9,29 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.formContainer}>
     
         <Text style={styles.title}>Home Screen</Text>
+        
 
         <View style={styles.buttonsContainer}>
           {/* botões de navegação entre as telas */}
           <TouchableOpacity style={styles.button} title="Go to Details" onPress={() => navigation.replace('Details')}>
+            <Image
+              source={require('../../assets/details-icon.png')}
+              style={styles.icons}
+            />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.profileButton} title="Go to Profile" onPress={() => navigation.replace('Profile')}> 
+          <TouchableOpacity style={styles.mainButton} title="Go to Profile" onPress={() => navigation.replace('Profile')}> 
+            <Image
+              source={require('../../assets/profile-icon.png')}
+              style={styles.mainIcon}
+            />
           </TouchableOpacity>
           
           {/* botão de logout para o usuário desconectar da conta */}
           <TouchableOpacity style={styles.button} title="Log Out" onPress={() => navigation.replace('Welcome')}> 
+            <Image
+              source={require('../../assets/logout-icon.png')}
+              style={styles.icons}
+            />
           </TouchableOpacity>
         </View>
 
@@ -37,14 +50,26 @@ const styles = StyleSheet.create({
       margin: 10,
       width: 40,
       height: 40,
+      alignItems: 'center',
     },
-    profileButton: {
+    icons: {
+      marginTop: 10,
+      width: 20,
+      height: 20,
+    },
+    mainIcon: {
+      marginTop: 10,
+      width: 30,
+      height: 30,
+    },
+    mainButton: {
       backgroundColor: '#424242',
       borderRadius: 80,
       marginTop: 20,
       margin: 10,
       width: 50,
       height: 50,
+      alignItems: 'center',
     },
     buttonText: {
       color: 'white',
