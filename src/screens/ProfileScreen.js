@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
-
+import { logout } from './LoginScreen';
 const windowWidth = Dimensions.get('window').width;
 
 export default function ProfileScreen({ navigation }) {
@@ -26,7 +26,7 @@ export default function ProfileScreen({ navigation }) {
             </TouchableOpacity>
                   
             {/* botão de logout para o usuário desconectar da conta */}
-            <TouchableOpacity style={styles.button} title="Log Out" onPress={() => navigation.replace('Welcome')}> 
+            <TouchableOpacity style={styles.button} title="Log Out" onPress={() => logout(navigation)}> 
               <Image
                 source={require('../../assets/logout-icon.png')}
                 style={styles.icons}

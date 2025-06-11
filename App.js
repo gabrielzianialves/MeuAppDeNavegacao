@@ -19,6 +19,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // funcao para verificar se o login foi feito antes do usuário sair do aplicativo
     async function loggedVerification() {
       try {
         const logged = await AsyncStorage.getItem('logged');
@@ -41,6 +42,7 @@ export default function App() {
     loggedVerification();
   }, []);
 
+  // tela de carregamento
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

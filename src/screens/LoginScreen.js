@@ -3,9 +3,14 @@ import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity, ImageB
 import { useState } from 'react';
 // importando o AsyncStorage para armazenar os dados do cadastro e login localmente
 import AsyncStorage from '@react-native-async-storage/async-storage';
-export {logout};
 
 const windowWidth = Dimensions.get('window').width;
+
+// função para logout, tornando o objeto logged falso 
+export const logout = async (navigation) => {
+  await AsyncStorage.setItem('logged', 'false');
+  navigation.replace('Welcome');
+}
 
 export default function LoginScreen ({ navigation }) {
 
@@ -41,16 +46,11 @@ export default function LoginScreen ({ navigation }) {
         Alert.alert('Error', 'Invalid email or password.');
       }
     } 
-    // tratamento de erros
     catch (error) {
       Alert.alert('Error', 'Login failed.');
     }
   }
 
-  async function logout() {
-    await AsyncStorage.setItem('logged', 'false');
-    navigation.replace('Welcome')
-  }
 
 
   return (
@@ -163,4 +163,3 @@ const styles = StyleSheet.create({
       backgroundColor: '#84848494',
     },
   });
-  
