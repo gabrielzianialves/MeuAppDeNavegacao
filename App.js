@@ -7,14 +7,52 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
+import { useState, useEffect } from "react";
+import { Alert, View, ActivityIndicator } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  const [initialScreen, setInitialScreen] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loggedVerification() {
+      try {
+        const logged = await AsyncStorage.getItem('logged');
+  
+        if (logged === 'true') {
+          setInitialScreen('Home');
+        } 
+        else {
+          setInitialScreen('Welcome');
+        }
+        setLoading(false);
+      } 
+      catch (error) {
+        Alert.alert('Error', 'Data not found.');
+        setInitialScreen('Welcome');
+        setLoading(false);
+      }
+    }
+
+    loggedVerification();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
+  }
+
   return (
     <NavigationContainer>
-      {/* Definindo as telas de navegação */}
-      <Stack.Navigator initialRouteName="Welcome">
+      {/* definindo as telas de navegação */}
+      <Stack.Navigator initialRouteName={initialScreen}>
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}

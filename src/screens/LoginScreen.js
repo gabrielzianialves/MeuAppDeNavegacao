@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity, ImageB
 import { useState } from 'react';
 // importando o AsyncStorage para armazenar os dados do cadastro e login localmente
 import AsyncStorage from '@react-native-async-storage/async-storage';
+export {logout};
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -30,8 +31,10 @@ export default function LoginScreen ({ navigation }) {
 
       // verifica se os parametros passados na função (referentes aos estados do useState) são iguais aos dados que foram passados no cadastro
       if (email == user.email && password == user.password){
+
         Alert.alert('Success');
-        // navega para a tela Home
+        // armazena o objeto logged no async storage caso o login seja executado corretamente
+        await AsyncStorage.setItem('logged', 'true');
         navigation.replace('Home')
       } 
       else {
@@ -42,6 +45,11 @@ export default function LoginScreen ({ navigation }) {
     catch (error) {
       Alert.alert('Error', 'Login failed.');
     }
+  }
+
+  async function logout() {
+    await AsyncStorage.setItem('logged', 'false');
+    navigation.replace('Welcome')
   }
 
 
@@ -76,7 +84,7 @@ export default function LoginScreen ({ navigation }) {
               <Text style={styles.buttonText}>Log In</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonGoBack} title="Go Back" onPress={() => navigation.replace('Welcome')}> 
+            <TouchableOpacity style={styles.buttonGoBack} title="Go Back" onPress={logout}> 
               <Text style={styles.buttonTextGoBack}>Go Back</Text>
             </TouchableOpacity>
     
